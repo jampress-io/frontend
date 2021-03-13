@@ -1,0 +1,22 @@
+.page {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  // background: linear-gradient(270deg, rgb(72, 54, 255), rgb(252, 76, 93)) 0% 0% / 200% 100%;
+}
+
+.panel {
+  flex: 0 0 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 2rem;
+  text-align: center;
+  background-color: transparent;
+
+  > .content-wrapper {
+    max-width: 1200px;
+  }
+}
