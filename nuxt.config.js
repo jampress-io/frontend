@@ -55,6 +55,6 @@ export default {
 
   // Generate Configuration
   generate: {
-    routes: [],
+    routes: ['/'],
   },
 }

@@ -32,11 +32,15 @@
           >
             <span>{{ form_field.label }}</span>
             <input
+              v-if="form_field.type !== 'textarea'"
               :type="form_field.type"
-              class="mt-1 block w-full"
-              :class="{ 'h-full': form_field.type == 'textarea' }"
-              :rows="form_field.type == 'textarea' ? 4 : null"
+              class="mt-1 block w-full text-black"
             />
+            <textarea
+              v-if="form_field.type == 'textarea'"
+              class="mt-1 block w-full text-black"
+              rows="4"
+            ></textarea>
           </label>
         </div>
 
@@ -57,6 +61,29 @@ export default {
 
   props: {
     panelContents: Object,
+  },
+
+  methods: {
+    handleSubmit(event) {
+      event.preventDefault()
+      const myForm = document.getElementById('pizzaOrder')
+      const formData = new FormData(myForm)
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString(),
+      })
+        .then(() => console.log('Form successfully submitted'))
+        .catch((error) => alert(error))
+    },
+
+    encode(data) {
+      return Object.keys(data)
+        .map(
+          (key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
+        )
+        .join('&')
+    },
   },
 }
 </script>
