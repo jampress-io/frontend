@@ -35,10 +35,12 @@
             <input
               v-if="form_field.type !== 'textarea'"
               :type="form_field.type"
+              :name="form_field.name"
               class="mt-1 block w-full text-black"
             />
             <textarea
               v-if="form_field.type == 'textarea'"
+              :name="form_field.name"
               class="mt-1 block w-full text-black"
               rows="4"
             ></textarea>
@@ -76,7 +78,10 @@ export default {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(formData).toString(),
       })
-        .then(() => console.log('Form successfully submitted'))
+        .then((formResponse) => {
+          console.warn('Form successfully submitted')
+          console.log({ formResponse })
+        })
         .catch((error) => alert(error))
     },
 
