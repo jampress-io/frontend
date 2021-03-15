@@ -11,8 +11,9 @@
       </p>
 
       <form
-        netlify
+        :id="`form-${panelContents.name}`"
         :name="panelContents.name"
+        netlify
         method="post"
         data-netlify-honeypot="bot-field"
         class="w-full grid grid-cols-1 gap-6"
@@ -66,8 +67,10 @@ export default {
   methods: {
     handleSubmit(event) {
       event.preventDefault()
-      const myForm = document.getElementById('pizzaOrder')
-      const formData = new FormData(myForm)
+      const contactForm = document.getElementById(
+        `form-${this.panelContents.name}`
+      )
+      const formData = new FormData(contactForm)
       fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
