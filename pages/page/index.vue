@@ -14,7 +14,7 @@ import axios from 'axios'
 export default {
   asyncData({ params }) {
     return axios
-      .get(`https://cms.jampress.dev/wp-json/wp/v2/pages?slug=home`)
+      .get(`${process.env.baseUrl}/wp-json/wp/v2/pages?slug=home`)
       .then((response) => {
         console.log(response.data[0])
         return { post: response.data[0] }

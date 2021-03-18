@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -55,6 +57,20 @@ export default {
 
   // Generate Configuration
   generate: {
-    routes: ['/'],
+    routes() {
+      return axios
+        .get(`https://cms.jampress.io/wp-json/wp/v2/pages`)
+        .then((res) => {
+          return res.data.map((page) => {
+            return {
+              route: '/' + page.slug,
+              payload: page,
+            }
+          })
+        })
+        .catch((error) => {
+          console.log({ error })
+        })
+    },
   },
 }

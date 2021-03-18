@@ -12,17 +12,25 @@
 <script>
 import axios from 'axios'
 export default {
-  asyncData({ params }) {
-    return axios
-      .get(`${process.env.baseUrl}/wp-json/wp/v2/pages?slug=${params.id}`)
-      .then((response) => {
-        console.log(response.data[0])
-        return { post: response.data[0] }
-      })
-      .catch((error) => {
-        return { error }
-      })
+  async asyncData({ params, error, payload }) {
+    if (payload) {
+      console.warn('Payload')
+      console.log({ payload })
+      // return { page: payload }
+    } else {
+      // return { user: await backend.fetchUser(params.id) }
+      return await axios
+        .get(`${process.env.baseUrl}/wp-json/wp/v2/pages?slug=${params.id}`)
+        .then((response) => {
+          console.log(response.data[0])
+          return { post: response.data[0] }
+        })
+        .catch((error) => {
+          return { error }
+        })
+    }
   },
+
   data() {
     return {
       post: {},
