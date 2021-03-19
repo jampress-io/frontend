@@ -12,11 +12,15 @@
   flex: 0 0 100%;
   display: flex;
   justify-content: center;
-  padding: 1rem 2rem;
+  padding: 0;
   text-align: center;
   background-color: transparent;
 
   > .content-wrapper {
     max-width: 1200px;
+  }
+
+  input[type="text"], textarea {
+    color: black;
   }
 }

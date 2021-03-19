@@ -57,8 +57,8 @@ export default {
 
   // Generate Configuration
   generate: {
-    routes() {
-      return axios
+    async routes() {
+      return await axios
         .get(`https://cms.jampress.io/wp-json/wp/v2/pages`)
         .then((res) => {
           return res.data.map((page) => {
