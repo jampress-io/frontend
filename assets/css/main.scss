@@ -23,4 +23,8 @@
   input[type="text"], textarea {
     color: black;
   }
+
+  &:last-child {
+    margin-bottom: 2rem;
+  }
 }
