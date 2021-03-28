@@ -25,7 +25,7 @@ export default {
     },
 
     page() {
-      return this.pages.find((el) => el.slug === 'home')
+      return this.pages.find((el) => el.slug === this.slug)
     },
   },
   created() {

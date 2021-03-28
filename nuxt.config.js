@@ -15,29 +15,15 @@ const dynamicRoutes = async () => {
   return await axios
     .get('https://cms.jampress.io/wp-json/wp/v2/pages')
     .then((res) => {
-      return res.data.map((page) => `/${page.slug}`)
+      return res.data.map((page) => {
+        if (page.slug === 'home') {
+          return `/`
+        } else {
+          return `/${page.slug}`
+        }
+      })
     })
 }
-
-// const dynamicRoutes = async () => {
-//   return await axios
-//     .get('https://cms.jampress.io/wp-json/wp/v2/pages')
-//     .then((res) => {
-//       console.warn(res.data)
-//       if (res.data) {
-//         return res.data.map((page) => {
-//           return '/' + page.slug
-//         })
-//       } else {
-//         return ['/']
-//       }
-//       // return res.data.map((page) => `/${page.slug}`)
-//     })
-//     .error((error) => {
-//       console.warn({ error })
-//       return ['/']
-//     })
-// }
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
