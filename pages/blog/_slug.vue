@@ -1,10 +1,11 @@
 <template>
   <section
-    v-if="page"
+    v-if="post"
     class="page bg-gradient-to-r from-indigo-600 to-pink-700"
   >
+    <!-- <h1>{{ post.title.rendered }}</h1> -->
     <div
-      v-for="(panel, index) in page.acf.panels"
+      v-for="(panel, index) in post.acf.panels"
       :key="panel.acf_fc_layout + index"
       class="panel"
     >
@@ -20,29 +21,29 @@ export default {
     }
   },
   computed: {
-    pages() {
-      return this.$store.state.pages
+    posts() {
+      return this.$store.state.posts
     },
 
-    page() {
-      return this.pages.find((el) => el.slug === this.slug)
+    post() {
+      return this.posts.find((el) => el.slug === this.slug)
     },
   },
   created() {
-    if (!this.$store.state.pages.length) {
-      this.$store.dispatch('getPages')
+    if (!this.$store.state.posts.length) {
+      this.$store.dispatch('getPosts')
     }
   },
   head() {
-    if (this.page) {
+    if (this.post) {
       return {
-        title: this.page._yoast_wpseo_title,
+        title: this.post._yoast_wpseo_title,
         meta: [
           {
             hid: 'description',
             id: 'description',
             name: 'description',
-            content: this.page._yoast_wpseo_metadesc,
+            content: this.post._yoast_wpseo_metadesc,
           },
         ],
       }

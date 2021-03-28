@@ -30,6 +30,7 @@ export default {
   },
   created() {
     this.$store.dispatch('getPages')
+    this.$store.dispatch('getPosts')
   },
   head() {
     if (this.page) {

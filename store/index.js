@@ -56,7 +56,7 @@ export const actions = {
           content,
           acf,
         }))
-      commit('updatePages', posts)
+      commit('updatePosts', posts)
     } catch (err) {
       console.log(err)
     }
