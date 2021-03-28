@@ -12,17 +12,45 @@
 
 import axios from 'axios'
 const dynamicRoutes = async () => {
-  return await axios
-    .get('https://cms.jampress.io/wp-json/wp/v2/pages')
-    .then((res) => {
-      return res.data.map((page) => {
-        if (page.slug === 'home') {
-          return `/`
-        } else {
-          return `/${page.slug}`
-        }
-      })
+  // const contentTypes = ['page', 'post']
+  // const contentRoutes = await Promise.all(
+  //   contentTypes.map((contentType) =>
+  //     axios
+  //       .get(`https://cms.jampress.io/wp-json/wp/v2/${contentType}s`)
+  //       .then((res) => {
+  //         return res.data.map((page) => {
+  //           if (contentType === 'page') {
+  //             if (page.slug === 'home') {
+  //               return `/`
+  //             } else {
+  //               return `/${page.slug}`
+  //             }
+  //           } else if (contentType === 'post') {
+  //             return `/blog/${page.slug}`
+  //           }
+  //         })
+  //       })
+  //   )
+  // )
+  // return contentRoutes
+
+  const contentRoutes = []
+  await axios.get('https://cms.jampress.io/wp-json/wp/v2/pages').then((res) => {
+    return res.data.map((page) => {
+      if (page.slug === 'home') {
+        contentRoutes.push(`/`)
+      } else {
+        contentRoutes.push(`/${page.slug}`)
+      }
     })
+  })
+
+  await axios.get('https://cms.jampress.io/wp-json/wp/v2/posts').then((res) => {
+    return res.data.map((post) => {
+      contentRoutes.push(`/blog/${post.slug}`)
+    })
+  })
+  return contentRoutes
 }
 
 export default {
