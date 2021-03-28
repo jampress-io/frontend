@@ -1,4 +1,43 @@
+// import data from './static/pages.json'
+// const dynamicRoutes = () => {
+//   return new Promise((resolve) => {
+//     console.warn(data)
+//     // resolve(data.map((page) => `/${page.slug}`))
+//     const pageRoutes = []
+//     pageRoutes.push('/')
+//     pageRoutes.push('/contact-us')
+//     resolve(pageRoutes)
+//   })
+// }
+
 import axios from 'axios'
+const dynamicRoutes = async () => {
+  return await axios
+    .get('https://cms.jampress.io/wp-json/wp/v2/pages')
+    .then((res) => {
+      return res.data.map((page) => `/${page.slug}`)
+    })
+}
+
+// const dynamicRoutes = async () => {
+//   return await axios
+//     .get('https://cms.jampress.io/wp-json/wp/v2/pages')
+//     .then((res) => {
+//       console.warn(res.data)
+//       if (res.data) {
+//         return res.data.map((page) => {
+//           return '/' + page.slug
+//         })
+//       } else {
+//         return ['/']
+//       }
+//       // return res.data.map((page) => `/${page.slug}`)
+//     })
+//     .error((error) => {
+//       console.warn({ error })
+//       return ['/']
+//     })
+// }
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -56,21 +95,13 @@ export default {
   build: {},
 
   // Generate Configuration
+  // generate: {
+  //   routes() {
+  //     return dynamicRoutes
+  //   },
+  // },
+
   generate: {
-    async routes() {
-      return await axios
-        .get(`https://cms.jampress.io/wp-json/wp/v2/pages`)
-        .then((res) => {
-          return res.data.map((page) => {
-            return {
-              route: '/' + page.slug,
-              payload: page,
-            }
-          })
-        })
-        .catch((error) => {
-          console.log({ error })
-        })
-    },
+    routes: dynamicRoutes,
   },
 }

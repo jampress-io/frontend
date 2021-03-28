@@ -18,6 +18,7 @@ export default {
       console.log({ payload })
       return { page: payload }
     } else {
+      console.log({ params })
       return await axios
         .get(`${process.env.baseUrl}/wp-json/wp/v2/pages?slug=${params.id}`)
         .then((response) => {
