@@ -12,44 +12,26 @@
 
 import axios from 'axios'
 const dynamicRoutes = async () => {
-  // const contentTypes = ['page', 'post']
-  // const contentRoutes = await Promise.all(
-  //   contentTypes.map((contentType) =>
-  //     axios
-  //       .get(`https://cms.jampress.io/wp-json/wp/v2/${contentType}s`)
-  //       .then((res) => {
-  //         return res.data.map((page) => {
-  //           if (contentType === 'page') {
-  //             if (page.slug === 'home') {
-  //               return `/`
-  //             } else {
-  //               return `/${page.slug}`
-  //             }
-  //           } else if (contentType === 'post') {
-  //             return `/blog/${page.slug}`
-  //           }
-  //         })
-  //       })
-  //   )
-  // )
-  // return contentRoutes
-
   const contentRoutes = []
-  await axios.get('https://cms.jampress.io/wp-json/wp/v2/pages').then((res) => {
-    return res.data.map((page) => {
-      if (page.slug === 'home') {
-        contentRoutes.push(`/`)
-      } else {
-        contentRoutes.push(`/${page.slug}`)
-      }
-    })
-  })
-
-  await axios.get('https://cms.jampress.io/wp-json/wp/v2/posts').then((res) => {
-    return res.data.map((post) => {
-      contentRoutes.push(`/blog/${post.slug}`)
-    })
-  })
+  const contentTypes = ['pages', 'posts']
+  for (let index = 0; index < contentTypes.length; index++) {
+    const contentType = contentTypes[index]
+    await axios
+      .get(`https://cms.jampress.io/wp-json/wp/v2/${contentType}`)
+      .then((res) => {
+        return res.data.map((contentItem) => {
+          if (contentType === 'pages') {
+            if (contentItem.slug === 'home') {
+              contentRoutes.push(`/`)
+            } else {
+              contentRoutes.push(`/${contentItem.slug}`)
+            }
+          } else if (contentType === 'posts') {
+            contentRoutes.push(`/blog/${contentItem.slug}`)
+          }
+        })
+      })
+  }
   return contentRoutes
 }
 
@@ -110,9 +92,25 @@ export default {
 
   // Generate Configuration
   // generate: {
-  //   routes() {
-  //     return dynamicRoutes
-  //   },
+  //   // routes() {
+  //   //   return axios
+  //   //     .get('https://cms.jampress.io/wp-json/wp/v2/pages')
+  //   //     .then((res) => {
+  //   //       return res.data.map((page) => {
+  //   //         if (page.slug === 'home') {
+  //   //           return {
+  //   //             route: '/',
+  //   //             payload: page,
+  //   //           }
+  //   //         } else {
+  //   //           return {
+  //   //             route: '/' + page.slug,
+  //   //             payload: page,
+  //   //           }
+  //   //         }
+  //   //       })
+  //   //     })
+  //   // },
   // },
 
   generate: {
