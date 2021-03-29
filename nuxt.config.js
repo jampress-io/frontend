@@ -11,9 +11,10 @@
 // }
 
 import axios from 'axios'
+
+const contentTypes = ['pages', 'posts']
 const dynamicRoutes = async () => {
   const contentRoutes = []
-  const contentTypes = ['pages', 'posts']
   for (let index = 0; index < contentTypes.length; index++) {
     const contentType = contentTypes[index]
     await axios
@@ -91,29 +92,31 @@ export default {
   build: {},
 
   // Generate Configuration
-  // generate: {
-  //   // routes() {
-  //   //   return axios
-  //   //     .get('https://cms.jampress.io/wp-json/wp/v2/pages')
-  //   //     .then((res) => {
-  //   //       return res.data.map((page) => {
-  //   //         if (page.slug === 'home') {
-  //   //           return {
-  //   //             route: '/',
-  //   //             payload: page,
-  //   //           }
-  //   //         } else {
-  //   //           return {
-  //   //             route: '/' + page.slug,
-  //   //             payload: page,
-  //   //           }
-  //   //         }
-  //   //       })
-  //   //     })
-  //   // },
-  // },
-
   generate: {
-    routes: dynamicRoutes,
+    routes() {
+      for (let index = 0; index < contentTypes.length; index++) {
+        const contentTypeUrl =
+          'https://cms.jampress.io/wp-json/wp/v2/' + contentTypes[index]
+        return axios.get(contentTypeUrl).then((res) => {
+          return res.data.map((content) => {
+            if (content.slug === 'home') {
+              return {
+                route: '/',
+                payload: content,
+              }
+            } else {
+              return {
+                route: '/' + content.slug,
+                payload: content,
+              }
+            }
+          })
+        })
+      }
+    },
   },
+
+  // generate: {
+  //   routes: dynamicRoutes,
+  // },
 }
