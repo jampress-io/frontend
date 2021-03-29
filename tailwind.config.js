@@ -3,6 +3,6 @@ module.exports = {
   theme: {},
   plugins: [require('@tailwindcss/forms')],
   purge: {
-    enabled: false,
+    enabled: true,
   },
 }
