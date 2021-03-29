@@ -16,12 +16,11 @@
 import axios from 'axios'
 export default {
   async asyncData({ params, error, payload }) {
-    if (payload) return { user: payload }
+    if (payload) return { page: payload }
     else
       return await axios
         .get(`https://cms.jampress.dev/wp-json/wp/v2/posts?slug=${params.id}`)
         .then((response) => {
-          console.log(response.data[0])
           return { post: response.data[0] }
         })
         .catch((error) => {
