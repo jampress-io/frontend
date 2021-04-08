@@ -1,15 +1,3 @@
-// import data from './static/pages.json'
-// const dynamicRoutes = () => {
-//   return new Promise((resolve) => {
-//     console.warn(data)
-//     // resolve(data.map((page) => `/${page.slug}`))
-//     const pageRoutes = []
-//     pageRoutes.push('/')
-//     pageRoutes.push('/contact-us')
-//     resolve(pageRoutes)
-//   })
-// }
-
 import axios from 'axios'
 // const dynamicRoutes = async () => {
 //   const contentRoutes = []
@@ -93,7 +81,6 @@ export default {
   // Generate Configuration
   generate: {
     async routes() {
-      // const contentTypes = ['post', 'page']
       const returnedContent = []
       await axios
         .get('https://cms.jampress.io/wp-json/wp/v2/pages')
@@ -104,14 +91,12 @@ export default {
                 route: '/',
                 payload: page,
               }
-              // console.log({ returnedPage })
               returnedContent.push(returnedPage)
             } else {
               const returnedPage = {
                 route: '/' + page.slug,
                 payload: page,
               }
-              // console.log({ returnedPage })
               returnedContent.push(returnedPage)
             }
           })
@@ -125,21 +110,9 @@ export default {
               route: '/blog/' + page.slug,
               payload: page,
             }
-            // console.log({ returnedPage })
             returnedContent.push(returnedPage)
           })
         })
-      console.log({ returnedContent })
-
-      // const routesContent = {}
-      // const returnedContent = Object.assign(
-      //   routesContent,
-      //   pagesContent,
-      //   postsContent
-      // )
-      // console.log({ returnedContent })
-
-      // const returnedContent = [...pagesContent, ...postsContent]
 
       return returnedContent
     },

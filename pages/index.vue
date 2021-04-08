@@ -19,9 +19,10 @@ export default {
     if (payload) return { page: payload }
     else
       return await axios
-        .get(`https://cms.jampress.dev/wp-json/wp/v2/posts?slug=home`)
+        .get(`https://cms.jampress.io/wp-json/wp/v2/posts?slug=home`)
         .then((response) => {
-          return { post: response.data[0] }
+          console.log({ response })
+          return { page: response.data[0] }
         })
         .catch((error) => {
           return { error }

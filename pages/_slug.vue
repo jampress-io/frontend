@@ -19,9 +19,9 @@ export default {
     if (payload) return { page: payload }
     else
       return await axios
-        .get(`https://cms.jampress.dev/wp-json/wp/v2/posts?slug=${params.id}`)
+        .get(`https://cms.jampress.io/wp-json/wp/v2/posts?slug=${params.id}`)
         .then((response) => {
-          return { post: response.data[0] }
+          return { page: response.data[0] }
         })
         .catch((error) => {
           return { error }
