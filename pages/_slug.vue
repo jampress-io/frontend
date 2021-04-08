@@ -19,7 +19,7 @@ export default {
     if (payload) return { page: payload }
     else
       return await axios
-        .get(`https://cms.jampress.io/wp-json/wp/v2/posts?slug=${params.id}`)
+        .get(`https://cms.jampress.io/wp-json/wp/v2/pages?slug=${params.id}`)
         .then((response) => {
           return { page: response.data[0] }
         })
@@ -27,25 +27,25 @@ export default {
           return { error }
         })
   },
-  data() {
-    return {
-      slug: this.$route.params.slug,
-    }
-  },
-  computed: {
-    pages() {
-      return this.$store.state.pages
-    },
+  // data() {
+  //   return {
+  //     slug: this.$route.params.slug,
+  //   }
+  // },
+  // computed: {
+  //   pages() {
+  //     return this.$store.state.pages
+  //   },
 
-    page() {
-      return this.pages.find((el) => el.slug === this.slug)
-    },
-  },
-  created() {
-    if (!this.$store.state.pages.length) {
-      this.$store.dispatch('getPages')
-    }
-  },
+  //   page() {
+  //     return this.pages.find((el) => el.slug === this.slug)
+  //   },
+  // },
+  // created() {
+  //   if (!this.$store.state.pages.length) {
+  //     this.$store.dispatch('getPages')
+  //   }
+  // },
   head() {
     if (this.page) {
       return {

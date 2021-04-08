@@ -19,33 +19,32 @@ export default {
     if (payload) return { page: payload }
     else
       return await axios
-        .get(`https://cms.jampress.io/wp-json/wp/v2/posts?slug=home`)
+        .get(`https://cms.jampress.io/wp-json/wp/v2/pages?slug=home`)
         .then((response) => {
-          console.log({ response })
           return { page: response.data[0] }
         })
         .catch((error) => {
           return { error }
         })
   },
-  data() {
-    return {
-      slug: this.$route.params.slug,
-    }
-  },
-  computed: {
-    pages() {
-      return this.$store.state.pages
-    },
+  // data() {
+  //   return {
+  //     slug: this.$route.params.slug,
+  //   }
+  // },
+  // computed: {
+  //   pages() {
+  //     return this.$store.state.pages
+  //   },
 
-    page() {
-      return this.pages.find((el) => el.slug === 'home')
-    },
-  },
-  created() {
-    this.$store.dispatch('getPages')
-    this.$store.dispatch('getPosts')
-  },
+  //   page() {
+  //     return this.pages.find((el) => el.slug === 'home')
+  //   },
+  // },
+  // created() {
+  //   this.$store.dispatch('getPages')
+  //   this.$store.dispatch('getPosts')
+  // },
   head() {
     if (this.page) {
       return {

@@ -28,25 +28,25 @@ export default {
           return { error }
         })
   },
-  data() {
-    return {
-      slug: this.$route.params.slug,
-    }
-  },
-  computed: {
-    posts() {
-      return this.$store.state.posts
-    },
+  // data() {
+  //   return {
+  //     slug: this.$route.params.slug,
+  //   }
+  // },
+  // computed: {
+  //   posts() {
+  //     return this.$store.state.posts
+  //   },
 
-    post() {
-      return this.posts.find((el) => el.slug === this.slug)
-    },
-  },
-  created() {
-    if (!this.$store.state.posts.length) {
-      this.$store.dispatch('getPosts')
-    }
-  },
+  //   post() {
+  //     return this.posts.find((el) => el.slug === this.slug)
+  //   },
+  // },
+  // created() {
+  //   if (!this.$store.state.posts.length) {
+  //     this.$store.dispatch('getPosts')
+  //   }
+  // },
   head() {
     if (this.post) {
       return {
