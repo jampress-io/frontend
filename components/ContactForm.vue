@@ -79,10 +79,13 @@ export default {
         body: new URLSearchParams(formData).toString(),
       })
         .then((formResponse) => {
-          console.warn('Form successfully submitted')
-          console.log({ formResponse })
+          console.warn({ formResponse })
+          this.$nuxt.$options.router.push('thanks')
         })
-        .catch((error) => alert(error))
+        .catch((error) => {
+          console.warn(error)
+          this.$nuxt.$options.router.push('error')
+        })
     },
 
     encode(data) {
