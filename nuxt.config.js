@@ -60,7 +60,7 @@ export default {
     async routes() {
       const returnedContent = []
       await axios
-        .get('https://cms.jampress.io/wp-json/wp/v2/pages')
+        .get(`${process.env.BASE_URL}/wp-json/wp/v2/pages`)
         .then((res) => {
           return res.data.map((page) => {
             if (page.slug === 'home') {
@@ -80,7 +80,7 @@ export default {
         })
 
       await axios
-        .get('https://cms.jampress.io/wp-json/wp/v2/posts')
+        .get(`${process.env.BASE_URL}/wp-json/wp/v2/posts`)
         .then((res) => {
           return res.data.map((page) => {
             const returnedPage = {

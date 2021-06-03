@@ -20,9 +20,10 @@ export default {
     if (payload) return { post: payload }
     else
       return await axios
-        .get(`https://cms.jampress.io/wp-json/wp/v2/posts?slug=${params.id}`)
+        .get(`${process.env.BASE_URL}/wp-json/wp/v2/posts?slug=${params.id}`)
         .then((response) => {
-          return { post: response.data[0] }
+          const page = response.data[0]
+          return { page }
         })
         .catch((error) => {
           return { error }

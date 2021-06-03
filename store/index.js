@@ -18,7 +18,7 @@ export const actions = {
     if (state.pages.length) return
     try {
       let pages = await fetch(
-        `https://cms.jampress.io/wp-json/wp/v2/pages`
+        `${process.env.BASE_URL}/wp-json/wp/v2/pages`
       ).then((res) => res.json())
       pages = pages
         .filter((el) => el.status === 'publish')
@@ -42,7 +42,7 @@ export const actions = {
     if (state.posts.length) return
     try {
       let posts = await fetch(
-        `https://cms.jampress.io/wp-json/wp/v2/posts`
+        `${process.env.BASE_URL}/wp-json/wp/v2/posts`
       ).then((res) => res.json())
       posts = posts
         .filter((el) => el.status === 'publish')
