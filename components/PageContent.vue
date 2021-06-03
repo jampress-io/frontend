@@ -2,7 +2,6 @@
   <div
     v-if="panelContents.body"
     :id="panelContents.content_id"
-    class="page-content-wrapper"
     :class="panelContents.content_wrapper_class"
   >
     <div
@@ -18,10 +17,9 @@ export default {
   name: 'PageContent',
 
   props: {
-    panelContents: Object
-  }
+    panelContents: Object,
+  },
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

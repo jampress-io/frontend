@@ -10,6 +10,10 @@
     >
       <component :is="panel.acf_fc_layout" :panel-contents="panel"></component>
     </div>
+    <block-content
+      v-if="page.content.rendered !== ''"
+      :block-contents="page"
+    ></block-content>
   </section>
 </template>
 <script>
@@ -21,7 +25,8 @@ export default {
       return await axios
         .get(`https://cms.jampress.io/wp-json/wp/v2/pages?slug=home`)
         .then((response) => {
-          return { page: response.data[0] }
+          const page = response.data[0]
+          return { page }
         })
         .catch((error) => {
           return { error }
