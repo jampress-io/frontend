@@ -32,7 +32,7 @@ export default {
 
   // Environment Variables
   env: {
-    baseUrl: process.env.BASE_URL || 'https://cms.jampress.io',
+    baseUrl: process.env.BASE_URL,
   },
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
