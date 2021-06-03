@@ -1,27 +1,4 @@
 import axios from 'axios'
-// const dynamicRoutes = async () => {
-//   const contentRoutes = []
-//   const contentTypes = ['pages', 'posts']
-//   for (let index = 0; index < contentTypes.length; index++) {
-//     const contentType = contentTypes[index]
-//     await axios
-//       .get(`https://cms.jampress.io/wp-json/wp/v2/${contentType}`)
-//       .then((res) => {
-//         return res.data.map((contentItem) => {
-//           if (contentType === 'pages') {
-//             if (contentItem.slug === 'home') {
-//               contentRoutes.push(`/`)
-//             } else {
-//               contentRoutes.push(`/${contentItem.slug}`)
-//             }
-//           } else if (contentType === 'posts') {
-//             contentRoutes.push(`/blog/${contentItem.slug}`)
-//           }
-//         })
-//       })
-//   }
-//   return contentRoutes
-// }
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -117,8 +94,4 @@ export default {
       return returnedContent
     },
   },
-
-  // generate: {
-  //   routes: dynamicRoutes,
-  // },
 }
