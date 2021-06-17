@@ -17,7 +17,7 @@
           <p>
             You can go back and try again or email your enquiry to
             <strong
-              ><a href="mailto:info@cluckandcollect.ie">info@cluckandcollect.ie</a></strong
+              ><a href="mailto:info@jampress.io">info@jampress.io</a></strong
             >.
           </p>
           <p>Sorry about that!</p>
