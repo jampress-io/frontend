@@ -1,7 +1,7 @@
 <template>
   <section
     v-if="page"
-    class="page bg-gradient-to-r from-indigo-600 to-pink-700"
+    class="page bg-white"
   >
     <div
       v-for="(panel, index) in page.acf.panels"

@@ -37,7 +37,7 @@ h2 {
     bottom: 0.75rem;
     transform: translateX(-50%);
     /* @extend .bg-pink-700; */
-    background-color: rgba(184, 50, 128, var(--bg-opacity));
+    background-color: #ed8936;
     content: '';
     transition: width 0.2s ease-out;
   }

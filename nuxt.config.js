@@ -9,7 +9,8 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'JamPress.io',
+    title:
+      "CluckAndCollect.ie - Dublin's finest pasture raised eggs, chickens and turkeys.",
     htmlAttrs: {
       lang: 'en',
     },
