@@ -49,7 +49,7 @@
 
         <button
           type="submit"
-          class="px-8 py-4 bg-pink-700 hover:bg-indigo-600 border border-white transition duration-500 ease-out text-white uppercase rounded font-bold"
+          class="px-8 py-4 bg-indigo-600 hover:bg-white border border-white transition duration-200 ease-out text-white hover:text-black uppercase rounded font-bold"
         >
           {{ panelContents.submit_button_text }}
         </button>

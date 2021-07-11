@@ -4,7 +4,7 @@
     v-html="blockContents.content.rendered"
   > -->
   <div
-    class="w-full flex flex-grow flex-shrink-0 flex-row flex-wrap items-start justify-center pb-8 text-white"
+    class="w-full flex flex-grow flex-shrink-0 flex-row flex-wrap items-start justify-center pb-8 bg-gray-900 text-white"
     v-html="blockContents.content.rendered"
   ></div>
   <!-- </div> -->
