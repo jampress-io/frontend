@@ -58,4 +58,10 @@ export default {
 .page-header-wrapper {
   min-height: 400px;
 }
+
+h2 {
+  &:after {
+    width: 50px;
+  }
+}
 </style>

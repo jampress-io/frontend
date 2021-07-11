@@ -1,5 +1,5 @@
 <template>
-  <section class="page bg-gradient-to-r from-indigo-600 to-pink-700">
+  <section class="page">
     <div class="panel">
       <div
         class="full-width-text-wrapper page-content-wrapper page-content-wrapper content-wrapper flex flex-grow flex-shrink-0 justify-center m-8 p-8 rounded shadow-xl bg-gray-900"

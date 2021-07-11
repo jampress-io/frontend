@@ -30,16 +30,19 @@
           <label
             class="block"
             :class="{ 'h-full': form_field.type == 'textarea' }"
+            :for="`form-${form_field.name}`"
           >
             <span>{{ form_field.label }}</span>
             <input
               v-if="form_field.type !== 'textarea'"
+              :id="`form-${form_field.name}`"
               :type="form_field.type"
               :name="form_field.name"
               class="mt-1 block w-full text-black"
             />
             <textarea
               v-if="form_field.type == 'textarea'"
+              :id="`form-${form_field.name}`"
               :name="form_field.name"
               class="mt-1 block w-full text-black"
               rows="4"
